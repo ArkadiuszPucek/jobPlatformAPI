@@ -18,7 +18,7 @@ class CompanyService {
         this.companyDtoMapper = companyDtoMapper;
     }
 
-    Optional<CompanyDto> getComapnyById(Long id){
+    Optional<CompanyDto> getCompanyById(Long id){
         return companyRepository.findById(id).map(companyDtoMapper::map);
     }
 
@@ -29,5 +29,11 @@ class CompanyService {
                 .stream()
                 .map(companyJobOfferDtoMapper::map)
                 .toList();
+    }
+
+    CompanyDto saveCompany(CompanyDto companyDto){
+        Company company = companyDtoMapper.map(companyDto);
+        Company savedCompany = companyRepository.save(company);
+        return companyDtoMapper.map(savedCompany);
     }
 }
