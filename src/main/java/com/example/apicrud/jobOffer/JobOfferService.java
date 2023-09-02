@@ -40,4 +40,8 @@ class JobOfferService {
         JobOffer jobOffer = jobOfferDtoMapper.map(jobOfferDto);
         jobOfferRepository.save(jobOffer);
     }
+
+    void deleteJobOffer(Long id){
+        jobOfferRepository.deleteById(id);
+    }
 }

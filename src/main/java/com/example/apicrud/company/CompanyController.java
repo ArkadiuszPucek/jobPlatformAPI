@@ -76,4 +76,10 @@ class CompanyController {
         JsonNode companyPatchNode = patch.apply(companyNode);
         return objectMapper.treeToValue(companyPatchNode, CompanyDto.class);
     }
+
+    @DeleteMapping("/{id")
+    ResponseEntity<?> deleteCompany(@PathVariable Long id){
+        companyService.deleteCompany(id);
+        return ResponseEntity.noContent().build();
+    }
 }

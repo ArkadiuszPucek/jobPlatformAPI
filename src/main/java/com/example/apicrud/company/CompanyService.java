@@ -51,4 +51,8 @@ class CompanyService {
         companyRepository.save(company);
     }
 
+    void deleteCompany(Long id){
+        companyRepository.deleteById(id);
+    }
+
 }
