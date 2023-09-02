@@ -35,11 +35,11 @@ class CompanyController {
     @PostMapping("")
     ResponseEntity<CompanyDto> saveCompany(@RequestBody CompanyDto company){
         CompanyDto savedCompany = companyService.saveCompany(company);
-        URI savedComapnyUri = ServletUriComponentsBuilder.fromCurrentRequest()
+        URI savedCompanyUri = ServletUriComponentsBuilder.fromCurrentRequest()
                 .path("/{id")
                 .buildAndExpand(savedCompany.getId())
                 .toUri();
-        return ResponseEntity.created(savedComapnyUri).body(savedCompany);
+        return ResponseEntity.created(savedCompanyUri).body(savedCompany);
     }
 
     @PutMapping("/{id}")

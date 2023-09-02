@@ -1,7 +1,6 @@
 package com.example.apicrud.jobOffer;
 
 import org.springframework.stereotype.Service;
-
 import java.time.LocalDateTime;
 import java.util.Optional;
 
@@ -25,6 +24,15 @@ class JobOfferService {
         jobOfferToSave.setDateAdded(LocalDateTime.now());
         JobOffer savedJobOffer = jobOfferRepository.save(jobOfferToSave);
         return jobOfferDtoMapper.map(savedJobOffer);
+    }
 
+    Optional<JobOfferDto> replaceJobOffer(Long offerId, JobOfferDto jobOfferDto){
+        if (!jobOfferRepository.existsById(offerId)){
+            return Optional.empty();
+        }
+        jobOfferDto.setId(offerId);
+        JobOffer jobOfferToUpdate = jobOfferDtoMapper.map(jobOfferDto);
+        JobOffer updatedJobOffer = jobOfferRepository.save(jobOfferToUpdate);
+        return Optional.of(jobOfferDtoMapper.map(updatedJobOffer));
     }
 }
