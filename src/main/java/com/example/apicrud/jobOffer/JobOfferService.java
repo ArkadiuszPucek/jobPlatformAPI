@@ -35,4 +35,9 @@ class JobOfferService {
         JobOffer updatedJobOffer = jobOfferRepository.save(jobOfferToUpdate);
         return Optional.of(jobOfferDtoMapper.map(updatedJobOffer));
     }
+
+    void updateJobOffer(JobOfferDto jobOfferDto){
+        JobOffer jobOffer = jobOfferDtoMapper.map(jobOfferDto);
+        jobOfferRepository.save(jobOffer);
+    }
 }

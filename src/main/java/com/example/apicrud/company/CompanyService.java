@@ -1,7 +1,6 @@
 package com.example.apicrud.company;
 
 import org.springframework.stereotype.Service;
-
 import java.util.Collections;
 import java.util.List;
 import java.util.Optional;
@@ -45,6 +44,11 @@ class CompanyService {
         Company companyToUpdate = companyDtoMapper.map(companyDto);
         Company updatedEntity = companyRepository.save(companyToUpdate);
         return Optional.of(companyDtoMapper.map(updatedEntity));
-
     }
+
+    void updateJobOffer(CompanyDto companyDto){
+        Company company = companyDtoMapper.map(companyDto);
+        companyRepository.save(company);
+    }
+
 }
